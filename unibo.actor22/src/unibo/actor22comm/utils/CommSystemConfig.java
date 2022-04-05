@@ -1,4 +1,4 @@
-package it.unibo.comm2022.utils;
+package unibo.actor22comm.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,15 +7,15 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import it.unibo.comm2022.ProtocolType;
 
-
+import unibo.actor22comm.ProtocolType;
+ 
 public class CommSystemConfig {
 	
 	public static  String mqttBrokerAddr = "tcp://localhost:1883"; //: 1883  OPTIONAL  tcp://broker.hivemq.com
 	public static int serverTimeOut        =  600000;  //10 minuti	
  	public static ProtocolType protcolType = ProtocolType.tcp;
- 	public static boolean tracing          = true;
+ 	public static boolean tracing          = false;
 
 	public static void setTheConfiguration(  ) {
 		setTheConfiguration("../CommSystemConfig.json");
