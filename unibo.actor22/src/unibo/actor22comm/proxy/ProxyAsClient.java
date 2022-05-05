@@ -73,7 +73,7 @@ protected ProtocolType protocol ;
 		try {
 			conn.forward(msg);
 		} catch (Exception e) {
-			ColorsOut.outerr( name+"  | sendMsgOnConnection ERROR=" + e.getMessage()  );
+			ColorsOut.outerr( name+"  | sendMsgOnConnection " + msg + " ERROR=" + e.getMessage()  );
 		}
 	}
  
@@ -96,14 +96,15 @@ protected ProtocolType protocol ;
 		new Thread() {
 			public void run() {
 				try {
-					ColorsOut.out(name + " |  activateReceiver STARTED on conn=" + conn  );
+					//ColorsOut.out(name + " |  activateReceiver STARTED on conn=" + conn, ColorsOut.BLUE  );
 					while(true) {
 						String msgStr    = conn.receiveMsg();
 						IApplMessage msg = new ApplMessage(msgStr);
 						//ColorsOut.out(name + " |  activateReceiver RECEIVES " + msg  );
 						QakActor22 a = Qak22Context.getActor(msg.msgReceiver());
 						if( a != null ) Qak22Util.sendAMsg( msg ); 		
-						else ColorsOut.outerr(name + " | activateReceiver: actor " + msg.msgReceiver() + " non local (I should not be here) ");					
+						else ColorsOut.outerr(name + 
+								" | activateReceiver: actor " + msg.msgReceiver() + " non local (I should not be here) ");					
 					}
 				} catch (Exception e) {
 					ColorsOut.outerr( name+"  | activateReceiver ERROR=" + e.getMessage()  );				} 
