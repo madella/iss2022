@@ -15,7 +15,7 @@ public class CommSystemConfig {
 	public static  String mqttBrokerAddr = "tcp://localhost:1883"; //: 1883  OPTIONAL  tcp://broker.hivemq.com
 	public static int serverTimeOut        =  600000;  //10 minuti	
  	public static ProtocolType protcolType = ProtocolType.tcp;
- 	public static boolean tracing          = true;
+ 	public static boolean tracing          = false;
 
 	public static void setTheConfiguration(  ) {
 		setTheConfiguration("../CommSystemConfig.json");

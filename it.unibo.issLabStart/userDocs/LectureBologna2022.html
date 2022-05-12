@@ -272,7 +272,7 @@ Completamento dello <b>Sprint1</b>:
 <ul>
 <li>Il <tt>SonarMock</tt> come specializzazione di una classe astratta <tt>SonarModel</tt> e una sua TestUnit. </li>
 <li>Il <tt>SonarConcrete</tt> come componente che riusa il core-code <tt>Sonar.c</tt>.</li>
-<li>Un primo prototipo: il <tt>RadarSystem</tt> con dispositivi simulati in ambiente locale e un suo (integration)Test.</li> 
+<li><b>Sprint1</b>: Un primo prototipo: il <tt>RadarSystem</tt> con dispositivi simulati in ambiente locale e un suo (integration)Test.</li> 
 <li>Deployment e sperimentazione <tt>RadarSystem</tt> con dispositivi simulati sul RaspberryPi.</li>
 <li>Sperimentazione del <tt>RadarSystem</tt> con dispositivi concreti sul RaspberryPi.</li>
 </ul>
@@ -315,7 +315,7 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
 <ul>
 <li>Aggiunta del protocollo UDP nel progetto <tt>it.unibo.comm2022</tt></li>
 <li>Problema: accendere/spegnere il Led su RaspberryPi usando TCP o UDP e un programma Python (con Jupyter)</li> <!-- jupyter notebook -->
-<li><b>Sprint3</b>:  Abilitatori di comunicazione</li>
+<li><b>Sprint3</b>:  <b>Abilitatori di comunicazione</b></li>
 <li>Introduzione al concetto di contesto</li>
 </ul>
 </td>
@@ -331,8 +331,8 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
 <td>
 <ul>
 <li>Sperimentazione in Lab2 del sistema distribuito prodotto nello Sprint3</li>
-<li><b>Sprint3 review</b>:  verso un unico server per nodo computazionale</li>
-<li><b>Sprint4</b>:  Il concetto di contesto e la sua implementazione: i messaggi strutturati</li>
+<li><b>Sprint3 review</b>:  verso un <tt>unico server per nodo</tt> computazionale</li>
+<li><b>Sprint4</b>:  <b>Il  concetto di contesto</b> e la sua implementazione: <b>i messaggi strutturati</b></li>
 <li>Refactoring del sistema utilizzando un contesto su RaspberryPi</li>
 </ul> 
 </td>
@@ -342,8 +342,16 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
 <tr><td><m>31/04/2022 (12-14)</m></td><td>Lab2</td> 
 <td>
 <ul>
-<li>Sperimentazione in Lab2 del sistema distribuito prodotto nello Sprint4</li
-<li>Analisi di un caso critico: il contatore con delay</li>
+<li>Sperimentazione in Lab2 del sistema distribuito prodotto nello Sprint4: 
+<ul>
+<li>osservazione del <tt>numero di Thread</tt> creati nel RadarSystem su RaspberryPi</li>
+<li>richiami sul funzionamento di <tt>Node.js</tt></li>
+<li>l'operazione <tt>prepareReply</tt> per la creazione di risposte</li>
+<li>l'invio di <tt>richieste 'in parallelo'</tt> (entro thread)</li>
+<li>l'uso di un <tt>Contatore con delay</tt></li>
+</ul>
+</li>
+<li>Proposta del progetto <tt>SonarObservable</tt></li>
 <li><b>Sprint4 review</b>:  dai POJO agli attori</li>
 </ul> 
 </td>
@@ -359,11 +367,23 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
     
 <tr><td><m>05/04/2022 (9-12)</m></td><td>Lab2</td> 
 <td>  
+Introduzione agli Attori.
+<br/>
+Discussione sul caso di studio <tt>SonarObservable</tt>
  </td>
 </tr>
 
 <tr><td><m>07/04/2022 (12-14)</m></td><td>Lab2</td> 
 <td> 
+Sistemi distribuiti ad attori. <br/>
+Il problema della univocità dei nomi degli attori: 
+discussione su olismo (vs. riduzionismo) come premessa
+del passaggio alla analisi e alla progettazione topo-down.
+<br/><br/>
+Revisione del caso di studio <tt>SonarObservable</tt>. 
+<br/>Introduzione al concetto di risorsa osservabile come
+emettitore di informazione (<i>evento</i>) resa percebibile dal contesto.
+
 </td>
 </tr>
 
@@ -374,6 +394,14 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
     
 <tr><td><m>12/04/2022 (9-12)</m></td><td>Lab2</td> 
 <td> 
+Il SonarObservable come attore che emette eventi.
+<br/> 
+Eventi come messaggi senza esplicito destinatario: dal concetto alla implementazione.
+Osservatori di eventi come elementi di testing.
+<br/> 
+Richiami sull'uso di annotazioni in Java.
+<br/> 
+Introduzione all'uso dei robot virtuali e reali. Il VirtualRobot in ambiente WEnv.
 </td>
 </tr>
 
@@ -395,6 +423,11 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
 
 <tr><td><m>21/04/2022 (12-14)</m></td><td>Lab2</td> 
 <td>
+Uso del VirtualRobot in ambiente WEnv mediante HTTP e WebSocket.
+<br/>
+Realizzazione di Interaction2021 per HTTP e WS.
+<br/>
+La classe WsConnectionForActors.
 </td>
 </tr> 
  
@@ -405,12 +438,47 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
     
 <tr><td><m>26/04/2022 (9-12)</m></td><td>Lab2</td> 
 <td>
+<ul>
+<li>Actor22: Considerazioni sul lavoro svolto e su quello ancora da compiere.
+</li>
+<li>Annotazioni per la descrizione di sistemi distribuiti ad attori. 
+<i>MainAnnotationDemo22Pc</i> e <i>MainAnnotationDemo22Rasp</i> 
+</li>
+<li>Sistemi descritti mediante annotazioni: esempi con WEnv: 
+<i>ActorWithObserverUsingWEnv</i> - un attore che percorre il boundary della stanza.
+</li>
+<li>Reimpostazione del funzionamento dell'attore precedente come automa stati finiti: <i>ActorWithFsmBasic</i>.
+</li>
+<li>Attori come automi a stati finiti di Moore: la classe <i>QakActor22Fsm</i>.
+</li>
+<li>Refactoring del <i>RobotBoundaryWalker</i> come specializzazione di <i>QakActor22Fsm</i>.
+</li> 
+<li>Il <b>problema RobotCleaner</b>: prima discussione sulla analisi dei requisiti e del problema  
+</li> 
+</ul> 
 </td>
 </tr>
 
 <tr><td><m>28/04/2022 (12-14)</m></td><td>Lab2</td> 
 
 <td>
+<ul>
+<li>Breve discussione sulla <b>autovalutazione</b> della analisi del RobotCleaner</li>
+<li>Completamento del <i>RobotBoundaryWalker</i> come specializzazione di <i>QakActor22Fsm</i></li>
+<li>Annotazioni per definire stati e transizioni di un automa di Moore: la classe <i>QakActor22Fsm</i></li>
+<li><i>BoundaryWalker</i>: refactoring usando le annotazioni per gli stati e le transizioni</li>
+<li><i>BoundaryWalker con eventi di allarme</i> (fireEvent) e di fine allarme (endAlarm)</li>
+<li><i>RobotCleaner</i>: un prototipo dopo l'analisi del problema. </li>
+<li>Il ruolo e i vantaggi di un approccio top-down che
+produce un modello eseguibile del sistema</li>
+<li>WorkTodo: <i>RobotCleaner con comandi</i> di start/stop/resume. 
+Due casi: 
+<ol>
+<li>dopo uno stop si ferma e riprende dopo resume </li>
+<li>dopo uno stop torna a HOME e dopo resume riprende dal punto in cui è stato interotto</li>
+</ol>
+</li>
+</ul>
  </td>
  
 </tr>
@@ -422,11 +490,24 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
     
 <tr><td><m>03/05/2022 (9-12)</m></td><td>Lab2</td> 
 <td> 
+<ul>
+<li><i>RobotCleaner</i> con comandi di start/stop/resume: dall'analisi al prototipo</li>
+<li>Una prima Web User Interface con SpringBoot: uso del prottotipo in una archittetura clean</li>
+</ul>
+
 </td>
 </tr>
 
 <tr><td><m>05/05/2022 (12-14)</m></td><td>Lab2</td> 
-<td> 
+<td>
+<ul>
+<li><i>RobotCleaner</i>: dall'analisi al progetto.</li>
+<li><i>RobotCleaner</i>: comandi start/stop</li>
+<li>Esempio di impostazione del lavoro e degli elaborati, anche in vista della prova finale</li>
+<li>Il problema dell'aggiornamento asincrono della pagina con lo stato del robot e del mondo</li>
+</ul>
+ 
+<
  </td>
 </tr>
 
@@ -439,16 +520,35 @@ Gli enablers come wrapper del server che invoca metodi di elaborazione di messag
     
 <tr><td><m>10/05/2022 (9-12)</m></td><td>Lab2</td> 
 <td>
+<ul>
+<li>Una WebConsole per il RobotCleaner: input area e DisplayArea.</li>
+<li>Uso delle WebSocket in Spring.</li>
+<li>Il problema dell'aggiornamento della DisplayArea da parte di un componente che non deve conoscere la GUI.</li>
+<li>Attori come risorse CoAP.</li>
+<li>Return to HOME: il problema del percorso e della posizione del robot. </li>
+<li>Introduzione all'uso di un pianificatore di movimenti in un'area rettangolare piana.</li>
+ </ul>
  
 </td>
 </tr>
 
 <tr><td><m>12/05/2022 (12-14)</m></td><td>Lab2</td> 
 <td>
- 
- </td>
+<ul>
+<li>Esempi di uso del pianificatore.</li>
+<li>Esempi  di applicazioni che usano il pianificatore: SpiralWalker,  RobotMapperBoudary e RobotUsingMap</li>
+<li>Introduzione all'uso del linguaggio custom qak per la definizione di modelli eseguibili</li>
+<!--
+<li>Oltre il VirtualRobot: un <i>BasicRobot</i> 'generico'. </li>
+<li>Il caso degli ostacoli</li>
+<li>Introduzione al metamodello qak</li>
+ <li>Una visione per applicazioni robotiche: sistemi con una 'mente' che muove un 'corpo' che fornisce informazioni</li>
+-->
+</ul>
+</td>
 </tr>
 
+ 
 
 <!--
     Week 13

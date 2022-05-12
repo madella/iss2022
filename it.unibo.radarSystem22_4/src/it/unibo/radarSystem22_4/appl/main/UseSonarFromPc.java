@@ -1,7 +1,7 @@
 package it.unibo.radarSystem22_4.appl.main;
 
-import java.util.ArrayList;
 import it.unibo.radarSystem22.domain.interfaces.*;
+import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import it.unibo.radarSystem22_4.appl.RadarSystemConfig;
 import it.unibo.radarSystem22_4.appl.proxy.SonarProxy;
 import it.unibo.radarSystem22_4.comm.ProtocolType;
@@ -10,20 +10,18 @@ import it.unibo.radarSystem22_4.comm.utils.BasicUtils;
 import it.unibo.radarSystem22_4.comm.utils.ColorsOut;
 import it.unibo.radarSystem22_4.comm.utils.CommSystemConfig;
 
-public class UseSonarFromPc extends SonarObservable implements IApplication {
+public class UseSonarFromPc implements IApplication{
  	private ISonar  sonar ;
- 	private int trigger;
  	
 	@Override
 	public String getName() {
 		return this.getClass().getName() ; 
 	}
-	
 	@Override
 	public void doJob(String domainConfig, String systemConfig ) {
 		setup(domainConfig,systemConfig);
 		configure();
-		execute();
+		execute();		
 		terminate();
 	}
 	
@@ -31,7 +29,7 @@ public class UseSonarFromPc extends SonarObservable implements IApplication {
 		ColorsOut.outappl(" === " + getName() + " ===", ColorsOut.MAGENTA);
 		RadarSystemConfig.DLIMIT           = 80;
 		RadarSystemConfig.ctxServerPort    = 8756;
-		CommSystemConfig.protcolType = ProtocolType.udp;
+		CommSystemConfig.protcolType = ProtocolType.tcp;
 	}
 	
 	protected void configure() {		
@@ -41,16 +39,9 @@ public class UseSonarFromPc extends SonarObservable implements IApplication {
 		sonar    		      = new SonarProxy("sonarPxy", host, ctxport, protocol );
  	}
 	
-	private void checkUpdate(int last,int d) {
-		int result=Math.abs(last-d);
-		if (result > trigger) {
-			notify(String.valueOf(result));
-		}
-	}
 
 	public void execute() {
 		ColorsOut.out("activate the sonar");
-		int last=0;
 		sonar.activate();
 		BasicUtils.delay(1000);
 		//BasicUtils.waitTheUser();
@@ -59,8 +50,6 @@ public class UseSonarFromPc extends SonarObservable implements IApplication {
 		if( sonarActive ) {
 			for( int i=1; i<=3; i++ ) {
 				int d = sonar.getDistance().getVal();
-				checkUpdate(last,d);
-				last=d;
 				ColorsOut.out("sonar distance="+d);
 				BasicUtils.delay(1000);			
 			}
